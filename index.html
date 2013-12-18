@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-    <title>Ifirmata.github.io</title>
+    <title>iFirmata</title>
   </head>
 
   <body>
@@ -16,10 +16,10 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/iFirmata">View on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/iFirmata/iFirmata">View on GitHub</a>
 
-          <h1 id="project_title">Ifirmata.github.io</h1>
-          <h2 id="project_tagline">Wabsite</h2>
+          <h1 id="project_title">iFirmata</h1>
+          <h2 id="project_tagline">Firmata class and host implementation for idevices</h2>
 
         </header>
     </div>
@@ -27,37 +27,57 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h3>Install it the hard way</h3>
+        <p>A dependancy of this code is the OpenBLE cocoapod to manage your Ble service
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+        <p>Download <a href="https://github.com/iFirmata/iFirmata">iFirmata</a> and <a href="https://github.com/OpenBLE/OpenBLE">OpenBLE</a> and copy everything in /Classes into your xcode project. Or more preferrably use <a href="http://beta.cocoapods.org/?q=">cocoapods</a> to get both at the same time.</p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+        <h3>Install it via Cocoapods</h3>
+        <p>Create a new xcode project or workspace or go to your existing, open a terminal in that directory, and type:</p>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+        <pre><code>sudo gem install cocoapods
+touch Podfile
+echo -e "platform :ios, '5.0'\npod 'iFirmata'" >> Podfile
+pod install</code></pre>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+        <p>It should complete and tell you to utilize the .xcworkspace from now on. 
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+        <h3>Use it</h3>
+        <p>Click on that xcworkspace file to open your project from now on and youll find your project with the source code all loaded up. Now you can:</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+        <pre><code>#import "Firmata.h"</code></pre>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+        <p>And have your class register as a Firmata protocol:</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+        <pre><code>@interface DetailViewController : UIViewController  <FirmataProtocol>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+@end</code></pre>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+        <p>See the OpenBLE cocoapod to see how to scan and connect to a bluetooth service with read and write characteristics. 
+        Then you can init a firmata object with it:</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+        <pre><code>Firmata *currentFirmata = [[Firmata alloc] initWithService:service controller:dest];</code></pre>
+
+        <p>And make some sort of call like analog mapping query to find all the:</p>
+        <pre><code>[currentFirmata analogMappingQuery];</code></pre>
+
+        <p>When the BLE returns to firmata, it will parse it and return a delegate so set up a delegate function:</p>
+
+        <pre><code>- (void) didUpdateAnalogMapping:(NSMutableDictionary *)analogMapping
+{
+    for (NSString* key in analogMapping) {
+      NSLog(@"key: %@ value: %@", key, [analogMapping objectForKey:key]);
+    }
+}</code></pre>
+
+        <h3>Example app</h3>
+        <p>Open the example app in /examples for a much more thorough implementation example. It  lists bluetooth devices, connects, and when it recieves read and write characteristics segues to a screen where you set pin modes, set or read pins, control servos and pwm and even send i2c data.</p>
+
+        <img src="images/scanner.png"/><img src="images/detail.png"/><img src="images/pinmode.png"/><img src="images/digital.png"/><img src="images/servo.png"/><img src="images/i2c.png"/>
+
+        <h3><a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+        <p>Use the github issues queue <a href="https://github.com/iFirmata/iFirmata/issues">https://github.com/iFirmata/iFirmata/issues</a> to report bugs or contribute code.</p>
       </section>
     </div>
 
