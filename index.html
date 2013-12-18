@@ -27,6 +27,26 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
+
+        <h3>Description</h3>
+
+        <p>A basic firmata host implmentation for idevices over BLE. Includes a firmata host implementation that allows you to test your firmata setup and do some basic operations.</p>
+
+        <p>Currently supports the <a href="http://www.seeedstudio.com/depot/xadow-ble-slave-p-1546.html">Seeed Studio Xadow BLE device</a> as well as the <a href="http://redbearlab.com/bleshield/">Redbear</a> device. Should support many other devices with few changes.The Xadow is a Leonardo style arduino part. It was necessary to change the StandardFirmata class to use Serial1 instead of Serial.</p>
+
+        <p>Important: This project requires a Bluetooth LE Capable Device (iPhone 4s and later; iPad 3 and later; iPod Touch 5; iPad mini) and will not work on the simulator.</p>
+
+        <p>BUILD REQUIREMENTS:</p>
+        <ul>
+          <li>Xcode 5 or greater</li>
+          <li>iOS 7 SDK or greater</li>
+        </ul>
+
+        <p>RUNTIME REQUIREMENTS:<p>
+        <ul>
+          <li>iOS 6 or later Bluetooth LE Capable Device Bluetooth LE Sensor/s</li>
+        </ul>
+
         <h3>Install it the hard way</h3>
         <p>A dependancy of this code is the OpenBLE cocoapod to manage your Ble service
 
@@ -49,7 +69,7 @@ pod install</code></pre>
 
         <p>And have your class register as a Firmata protocol:</p>
 
-        <pre><code>@interface DetailViewController : UIViewController  <FirmataProtocol>
+        <pre><code>@interface DetailViewController : UIViewController  &#60;FirmataProtocol&#62;
 
 @end</code></pre>
 
