@@ -60,6 +60,11 @@ touch Podfile
 echo -e "platform :ios, '5.0'\npod 'iFirmata'" >> Podfile
 pod install</code></pre>
 
+        <p>Or if you're using the example, theres already a podfile so just cd to that directory and type:</p>
+
+        <pre><code>sudo gem install cocoapods
+pod install</code></pre>
+
         <p>It should complete and tell you to utilize the .xcworkspace from now on. 
 
         <h3>Use it</h3>
@@ -78,7 +83,7 @@ pod install</code></pre>
 
         <pre><code>Firmata *currentFirmata = [[Firmata alloc] initWithService:service controller:dest];</code></pre>
 
-        <p>And make some sort of call like analog mapping query to find all the:</p>
+        <p>And make some sort of call like analog mapping query to find all the available pins on the device:</p>
         <pre><code>[currentFirmata analogMappingQuery];</code></pre>
 
         <p>When the BLE returns to firmata, it will parse it and return a delegate so set up a delegate function:</p>
