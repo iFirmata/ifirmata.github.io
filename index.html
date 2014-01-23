@@ -32,7 +32,8 @@
 		
 		<iframe width="420" height="315" src="//www.youtube.com/embed/Wv58Vw8H8tQ" frameborder="0" allowfullscreen></iframe>
 		
-    <p>Firmata lets you connect Arduino to computers and other Arduino boards. iFirmata lets you control your Arduino from your idevice! You need:</p>
+    <p>Firmata lets you connect Arduino to computers and other Arduino boards. iFirmata lets you control your Arduino from your idevice!</p> 
+	<p>You need:</p>
     
 		<ul>
 			<li>Supported iDevice</li>
@@ -51,7 +52,7 @@
 		<p>Currently the <a href="http://www.seeedstudio.com/depot/xadow-ble-slave-p-1546.html">Xadow</a> and <a href="http://redbearlab.com/bleshield/">Redbear BLEShield</a>.</p>
 		
 		<h4>Firmata Library</h4>
-		<p>Firmata library version 2.3.1 comes standard in Arduino. 1.0.5 and Firmata library version 2.3.6 comes standard in Arduino Beta 1.5.3. For Redbear either of these shoudl be fine. However, the Xadow is basically a Leonardo Arduino and the Firmata people will tell you to utilize Firmata 2.3.2 or greater. If you followed the Seeed directions to add the Seeeduino Xadow to your Tools->Board, you're probably stuck on Arduino 1.0 so you need to download the <a href="http://firmata.org/wiki/Download">2.3.2 or newer zip file.</a> Since its a built in library you can't just install it in your user libraries directory like Documents/Arduino/libraries because Arduino will use the other copy! You need to go into your arduino executable directory and overwrite the libraries/Firmata folder.</p>
+		<p>Firmata library version 2.3.1 comes standard in Arduino. 1.0.5 and Firmata library version 2.3.6 comes standard in Arduino Beta 1.5.3. For Redbear either of these should be fine. However, the Xadow is basically a Leonardo Arduino and the Firmata people will tell you to utilize Firmata 2.3.2 or greater. If you followed the Seeed directions to add the Seeeduino Xadow to your Tools->Board, you're probably stuck on Arduino 1.0 so you need to download the <a href="http://firmata.org/wiki/Download">2.3.2 or newer zip file.</a> Since its a built in library you can't just install it in your user libraries directory like Documents/Arduino/libraries because Arduino will use the other copy! You need to go into your arduino executable directory and overwrite the libraries/Firmata folder.</p>
 		
 		<h4>Firmata Sketch</h4>
 		<p>The standard firmata sketch is found in the examples -> firmata - standard firmata HOWEVER this will need changes for MOST BLE modules -- Check with your BLE module provider. We've done <a href="https://github.com/jacobrosenthal/xadow/tree/master/examples/XadowFirmata">Xadow</a> and <a href="https://github.com/jacobrosenthal/arduino/tree/redbear-ble/examples/StandardFirmata">Redbear</a> examples. Burn it to your Arduino!</p> 
