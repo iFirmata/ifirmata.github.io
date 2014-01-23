@@ -19,7 +19,7 @@
           <a id="forkme_banner" href="https://github.com/iFirmata/iFirmata">View on GitHub</a>
 
           <h1 id="project_title">iFirmata</h1>
-          <h2 id="project_tagline">Firmata class and host implementation for idevices</h2>
+          <h2 id="project_tagline">Control your Arduino from your iDevice</h2>
 
         </header>
     </div>
@@ -29,30 +29,55 @@
       <section id="main_content" class="inner">
 
         <h3>Description</h3>
+		
+		<iframe width="420" height="315" src="//www.youtube.com/embed/Wv58Vw8H8tQ" frameborder="0" allowfullscreen></iframe>
+		
+    <p>Firmata lets you connect Arduino to computers and other Arduino boards. iFirmata lets you control your Arduino from your idevice! You need:</p>
+    
+		<ul>
+			<li>Supported iDevice</li>
+			<li>Supported Bluetooth LE module and Arduino</li>
+			<li>Firmata library</li>
+			<li>Firmata Sketch</li>
+			<li>iFirmata App available in the app store or compile it yourself.</li>
+		</ul>
 
-        <p>A basic firmata host implmentation for idevices over BLE. Includes a firmata host implementation that allows you to test your firmata setup and do some basic operations.</p>
+		
+		<h4>Supported iDevice</h4>
+		<p>iOS 6 or later -- iPhone 4s and later; iPad 3 and later; iPod Touch 5; iPad mini</p>
+		
+		<h4>Supported Bluetooth LE module and Arduino</h4>
+		
+		<p>Currently the <a href="http://www.seeedstudio.com/depot/xadow-ble-slave-p-1546.html">Xadow</a> and <a href="http://redbearlab.com/bleshield/">Redbear BLEShield</a>.</p>
+		
+		<h4>Firmata Library</h4>
+		<p>Firmata library version 2.3.1 comes standard in Arduino. 1.0.5 and Firmata library version 2.3.6 comes standard in Arduino Beta 1.5.3. For Redbear either of these shoudl be fine. However, the Xadow is basically a Leonardo Arduino and the Firmata people will tell you to utilize Firmata 2.3.2 or greater. If you followed the Seeed directions to add the Seeeduino Xadow to your Tools->Board, you're probably stuck on Arduino 1.0 so you need to download the <a href="http://firmata.org/wiki/Download">2.3.2 or newer zip file.</a> Since its a built in library you can't just install it in your user libraries directory like Documents/Arduino/libraries because Arduino will use the other copy! You need to go into your arduino executable directory and overwrite the libraries/Firmata folder.</p>
+		
+		<h4>Firmata Sketch</h4>
+		<p>The standard firmata sketch is found in the examples -> firmata - standard firmata HOWEVER this will need changes for MOST BLE modules -- Check with your BLE module provider. We've done <a href="https://github.com/jacobrosenthal/xadow/tree/master/examples/XadowFirmata">Xadow</a> and <a href="https://github.com/jacobrosenthal/arduino/tree/redbear-ble/examples/StandardFirmata">Redbear</a> examples. Burn it to your Arduino!</p> 
+		
+		<h4>iFirmata App</h4>
+		<a href="https://itunes.apple.com/us/app/ifirmata/id795905884?ls=1&mt=8">Available in the App Store</a>
+		<p>Or build your own</p>
 
-        <p>Currently supports the <a href="http://www.seeedstudio.com/depot/xadow-ble-slave-p-1546.html">Seeed Studio Xadow BLE device</a> as well as the <a href="http://redbearlab.com/bleshield/">Redbear</a> device. Should support many other devices with few changes.The Xadow is a Leonardo style arduino part. It was necessary to change the StandardFirmata class to use Serial1 instead of Serial.</p>
 
-        <p>Important: This project requires a Bluetooth LE Capable Device (iPhone 4s and later; iPad 3 and later; iPod Touch 5; iPad mini) and will not work on the simulator.</p>
-
-        <p>BUILD REQUIREMENTS:</p>
+        <h4>BUILD REQUIREMENTS:</h4>
         <ul>
           <li>Xcode 5 or greater</li>
           <li>iOS 7 SDK or greater</li>
         </ul>
 
-        <p>RUNTIME REQUIREMENTS:<p>
+        <h4>RUNTIME REQUIREMENTS:</h4>
         <ul>
           <li>iOS 6 or later Bluetooth LE Capable Device Bluetooth LE Sensor/s</li>
         </ul>
 
-        <h3>Install it the hard way</h3>
+        <h4>Install it the hard way</h4>
         <p>A dependancy of this code is the OpenBLE cocoapod to manage your Ble service
 
         <p>Download <a href="https://github.com/iFirmata/iFirmata">iFirmata</a> and <a href="https://github.com/OpenBLE/OpenBLE">OpenBLE</a> and copy everything in /Classes into your xcode project. Or more preferrably use <a href="http://beta.cocoapods.org/?q=">cocoapods</a> to get both at the same time.</p>
 
-        <h3>Install it via Cocoapods</h3>
+        <h4>Install it via Cocoapods</h4>
         <p>Create a new xcode project or workspace or go to your existing, open a terminal in that directory, and type:</p>
 
         <pre><code>sudo gem install cocoapods
@@ -67,7 +92,7 @@ pod install</code></pre>
 
         <p>It should complete and tell you to utilize the .xcworkspace from now on. 
 
-        <h3>Use it</h3>
+        <h4>Use it</h4>
         <p>Click on that xcworkspace file to open your project from now on and youll find your project with the source code all loaded up. Now you can:</p>
 
         <pre><code>#import "Firmata.h"</code></pre>
@@ -95,12 +120,12 @@ pod install</code></pre>
     }
 }</code></pre>
 
-        <h3>Example app</h3>
+        <h4>Example app</h4>
         <p>Open the example app in /examples for a much more thorough implementation example. It  lists bluetooth devices, connects, and when it recieves read and write characteristics segues to a screen where you set pin modes, set or read pins, control servos and pwm and even send i2c data.</p>
 
         <img style="width: 20%;" src="images/scanner.png"/><img style="width: 20%;" src="images/detail.png"/><img style="width: 20%;" src="images/pinmode.png"/><img style="width: 20%;" src="images/digital.png"/><img style="width: 20%;" src="images/servo.png"/><img style="width: 20%;" src="images/i2c.png"/>
 
-        <h3><a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+        <h4><a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h4>
 
         <p>Use the github issues queue <a href="https://github.com/iFirmata/iFirmata/issues">https://github.com/iFirmata/iFirmata/issues</a> to report bugs or contribute code.</p>
       </section>
